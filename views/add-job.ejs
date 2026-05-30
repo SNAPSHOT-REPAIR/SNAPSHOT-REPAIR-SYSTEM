@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Job Card</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f1f1f1;
+    padding:20px;
+}
+
+form{
+    background:white;
+    max-width:700px;
+    margin:auto;
+    padding:25px;
+    border-radius:20px;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:black;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<form action="/admin/add-job" method="POST">
+
+<h1>Create Job Card</h1>
+
+<input type="text" name="jobNumber" placeholder="Job Number">
+
+<input type="text" name="customerName" placeholder="Customer Name">
+
+<input type="text" name="brand" placeholder="Brand">
+
+<input type="text" name="modelNumber" placeholder="Model Number">
+
+<input 
+    type="text" 
+    name="serialNumber" 
+    placeholder="Serial Number"
+    required
+>
+
+<input type="text" name="problem" placeholder="Problem">
+
+<input type="text" name="status" placeholder="Status">
+
+<button>Create Job Card</button>
+
+</form>
+
+</body>
+</html>

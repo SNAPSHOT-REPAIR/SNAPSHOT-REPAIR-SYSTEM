@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:#f0fdf4;
+            display:flex;
+        }
+
+        .sidebar{
+            width:260px;
+            height:100vh;
+            background:#064e3b;
+            color:white;
+            position:fixed;
+            left:0;
+            top:0;
+            padding:25px;
+        }
+
+        .logo{
+    font-size:26px;
+    font-weight:700;
+    margin-bottom:30px;
+    color:#6ee7b7;
+    text-align:center;
+}
+        
+        .menu{
+        display:flex;
+        gap:10px;
+        }
+
+        .menu a{
+            display:block;
+            text-decoration:none;
+            color:#d1fae5;
+            padding:14px 16px;
+            border-radius:12px;
+            margin-bottom:10px;
+            transition:0.3s;
+        }
+
+        .menu a:hover{
+            background:#065f46;
+            color:white;
+        }
+
+        .main{
+            margin-left:260px;
+            width:calc(100% - 260px);
+            padding:30px;
+        }
+
+        .topbar{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    margin-bottom:22px;
+    padding-top:8px;
+}
+
+        .logout-btn{
+            text-decoration:none;
+            background:#ef4444;
+            color:white;
+            padding:12px 20px;
+            border-radius:12px;
+            transition:0.3s;
+            font-weight:600;
+        }
+
+        .logout-btn:hover{
+            background:#dc2626;
+        }
+
+        .cards{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    padding-bottom:5px;
+    }
+
+        .card{
+    min-width:110px;
+    flex:1;
+    border-radius:24px;
+    padding:18px 14px;
+    background:white;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+    }
+
+        .card h3{
+    font-size:13px;
+    color:#6b7280;
+    margin-bottom:10px;
+    }
+
+        .card h2{
+    font-size:32px;
+    font-weight:700;
+    }
+    
+    .cards::-webkit-scrollbar{
+    display:none;
+}
+        .table-container{
+            background:white;
+            padding:25px;
+            border-radius:20px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.05);
+            overflow-x:auto;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table th{
+            background:#064e3b;
+            color:white;
+            padding:16px;
+            text-align:left;
+            font-size:14px;
+        }
+
+        table td{
+            padding:16px;
+            border-bottom:1px solid #e5e7eb;
+            font-size:14px;
+            color:#374151;
+        }
+
+        tr:hover{
+            background:#f9fafb;
+        }
+
+        .status{
+            padding:6px 14px;
+            border-radius:30px;
+            color:white;
+            font-size:12px;
+            font-weight:600;
+        }
+
+        .pending{
+            background:#f59e0b;
+        }
+
+        .progress{
+            background:#3b82f6;
+        }
+
+        .completed{
+            background:#10b981;
+        }
+
+        select{
+            padding:10px;
+            border-radius:10px;
+            border:1px solid #d1d5db;
+            outline:none;
+        }
+
+        .update-btn{
+            background:#10b981;
+            color:white;
+            border:none;
+            padding:10px 16px;
+            border-radius:10px;
+            cursor:pointer;
+            margin-left:8px;
+            font-weight:600;
+        }
+
+        .update-btn:hover{
+            background:#059669;
+        }
+
+        @media(max-width:900px){
+
+            body{
+                flex-direction:column;
+            }
+
+            .sidebar{
+                width:100%;
+                height:auto;
+                position:relative;
+            }
+
+            .main{
+                margin-left:0;
+                width:100%;
+            }
+           
+                .table-container{
+        padding:12px;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    table{
+        min-width:850px;
+    }
+
+    table th,
+    table td{
+        padding:10px;
+        font-size:13px;
+        white-space:nowrap;
+    }
+
+    select{
+        padding:7px;
+        font-size:12px;
+    }
+
+    .update-btn{
+        padding:7px 10px;
+        font-size:12px;
+        margin-left:5px;
+    }
+
+    .status{
+        font-size:11px;
+        padding:5px 10px;
+    }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <div class="topbar">
+
+    <div style="display:flex;align-items:center;gap:12px;">
+        <img src="/logo.png" style="width:65px;height:65px;object-fit:contain;">
+
+        <div>
+            <div style="font-size:28px;font-weight:700;color:#111827;line-height:1;">
+                SNAPSHOT
+            </div>
+
+            <div style="font-size:21px;font-weight:600;color:#10b981;line-height:1.2;">
+                SERVICE CENTER
+            </div>
+        </div>
+    </div>
+
+    <h1 style="font-size:18px; font-weight:600; color:white; margin-top:10px; text-align:center; width:100%;">
+    Engineer Dashboard
+</h1>
+
+</div>
+
+        <div style="display:flex; justify-content:flex-end; margin-top:18px;">
+    <a href="/engineer/logout" class="logout-btn">
+        Logout
+    </a>
+</div>
+
+    </div>
+
+
+    <div class="main">
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Total Jobs</h3>
+
+                <h2>
+                    <%= jobs.length %>
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Pending Jobs</h3>
+
+                <h2>
+                    <%= jobs.filter(job => job.status === 'Pending').length %>
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Completed Jobs</h3>
+
+                <h2>
+                    <%= jobs.filter(job => job.status === 'Completed').length %>
+                </h2>
+
+            </div>
+            
+            <div class="card">
+
+    <h3>Return Jobs</h3>
+
+    <h2>
+        <%= jobs.filter(job => job.status === 'Return').length %>
+    </h2>
+
+</div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Job Card</th>
+                        <th>Model</th>
+                        <th>Serial Number</th>
+                        <th>Problem</th>
+                        <th>Current Status</th>
+                        <th>Repair Eng</th>
+                        <th>Update Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% jobs.forEach(job => { %>
+
+                        <tr>
+
+                            <td>
+                                <%= job.jobNumber %>
+                            </td>
+
+                            <td>
+                                <%= job.modelNumber %>
+                            </td>
+
+                            <td>
+                                <%= job.serialNumber %>
+                            </td>
+
+                            <td>
+                               <%= job.problem %>
+                            </td>
+
+                            <td>
+
+                                <% if(job.status === 'Pending'){ %>
+
+                                    <span class="status pending">
+                                        Pending
+                                    </span>
+
+                                <% } else if(job.status === 'Completed'){ %>
+
+                                    <span class="status completed">
+                                        Completed
+                                    </span>
+                                
+                                <% } else if(job.status === 'Return'){ %>
+
+                                  <span class="status return">
+                                        Return
+                                   </span>
+
+                                <% } else { %>
+
+                                    <span class="status progress">
+                                        In Progress
+                                    </span>
+
+                                <% } %>
+
+                             </td>
+
+                             
+
+                            <td>
+                             <%= job.repairEngineer || 'None' %>
+                            </td>
+
+                            <td>
+
+    <form action="/engineer/update-status/<%= job._id %>" method="POST">
+
+        <select name="status">
+            <option value="Pending" <%= job.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+            <option value="In Progress" <%= job.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+            <option value="Completed" <%= job.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+            <option value="Return" <%= job.status === 'Return' ? 'selected' : '' %>>Return</option>
+        </select>
+
+        <button type="submit" class="update-btn">
+            Update
+        </button>
+
+    </form>
+
+</td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

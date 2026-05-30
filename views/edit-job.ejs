@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Job</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f3f4f6;
+    padding:30px;
+}
+
+.box{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin-bottom:14px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+    <h2>Edit Job Card</h2>
+
+    <form action="/admin/edit-job/<%= job._id %>" method="POST">
+
+        <input type="text" name="jobNumber" value="<%= job.jobNumber %>" required>
+
+        <input type="text" name="customerName" value="<%= job.customerName %>" required>
+
+        <input type="text" name="brand" value="<%= job.brand %>" required>
+
+        <input type="text" name="modelNumber" value="<%= job.modelNumber %>" required>
+
+        <input type="text" name="serialNumber" value="<%= job.serialNumber %>" required>
+
+        <input type="text" name="problem" value="<%= job.problem %>" required>
+
+        <select name="status">
+            <option value="Pending" <%= job.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+            <option value="In Progress" <%= job.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+            <option value="Completed" <%= job.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+            <option value="Return" <%= job.status === 'Return' ? 'selected' : '' %>>Return</option>
+        </select>
+
+        <button type="submit">Update Job</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

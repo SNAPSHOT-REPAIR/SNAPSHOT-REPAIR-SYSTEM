@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#064e3b,#10b981);
+            overflow:hidden;
+        }
+
+        .login-box{
+            width:420px;
+            background:white;
+            padding:40px;
+            border-radius:24px;
+            box-shadow:0 10px 40px rgba(0,0,0,0.2);
+            animation:fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        .logo{
+            text-align:center;
+            font-size:30px;
+            font-weight:700;
+            color:#10b981;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#6b7280;
+            font-size:14px;
+            margin-bottom:35px;
+        }
+
+        .input-group{
+            margin-bottom:22px;
+        }
+
+        .input-group label{
+            display:block;
+            margin-bottom:8px;
+            color:#374151;
+            font-size:14px;
+            font-weight:500;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:14px;
+            border:1px solid #d1d5db;
+            border-radius:12px;
+            outline:none;
+            font-size:15px;
+            transition:0.3s;
+        }
+
+        .input-group input:focus{
+            border-color:#10b981;
+            box-shadow:0 0 0 4px rgba(16,185,129,0.1);
+        }
+
+        .login-btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background:#10b981;
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .login-btn:hover{
+            background:#059669;
+        }
+
+        .footer-text{
+            text-align:center;
+            margin-top:20px;
+            color:#9ca3af;
+            font-size:13px;
+        }
+
+        @media(max-width:500px){
+
+            .login-box{
+                width:90%;
+                padding:30px;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+
+        <div class="logo">
+            Engineer Panel
+        </div>
+
+        <div class="subtitle">
+         
+            Login to update repair status
+        </div>
+         
+        <% if(error){ %>
+
+<div style="
+    background:#fee2e2;
+    color:#dc2626;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:18px;
+    text-align:center;
+    font-size:14px;
+    font-weight:500;
+">
+    <%= error %>
+</div>
+
+<% } %>
+
+        <form action="/engineer/login" method="POST">
+
+            <div class="input-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter Username"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="footer-text">
+            Snapshot Repair Engineer Access
+        </div>
+
+    </div>
+
+</body>
+</html>

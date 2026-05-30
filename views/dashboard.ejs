@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            display:flex;
+        }
+
+        .sidebar{
+            width:260px;
+            height:100vh;
+            background:#111827;
+            color:white;
+            position:fixed;
+            left:0;
+            top:0;
+            padding:25px;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:700;
+            margin-bottom:40px;
+            color:#60a5fa;
+        }
+
+        .menu a{
+            display:block;
+            text-decoration:none;
+            color:#d1d5db;
+            padding:14px 16px;
+            border-radius:10px;
+            margin-bottom:10px;
+            transition:0.3s;
+            font-size:15px;
+        }
+
+        .menu a:hover{
+            background:#1f2937;
+            color:white;
+        }
+
+        .menu-summary{
+    margin-top:14px;
+    background:#1f2937;
+    border-radius:14px;
+    padding:14px;
+    text-align:center;
+}
+
+        .main{
+            margin-left:260px;
+            width:calc(100% - 260px);
+            padding:30px;
+        }
+
+        .topbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:30px;
+        }
+
+        .topbar h1{
+            font-size:30px;
+            color:#111827;
+        }
+
+        .logout-btn{
+            text-decoration:none;
+            background:#ef4444;
+            color:white;
+            padding:10px 20px;
+            border-radius:10px;
+            transition:0.3s;
+        }
+
+        .logout-btn:hover{
+            background:#dc2626;
+        }
+
+        .cards{
+        display:flex;
+        gap:12px;
+        overflow-x:auto;
+        padding-bottom:5px;
+        }
+
+        .card{
+    min-width:110px;
+    flex:1;
+    border-radius:24px;
+    padding:18px 14px;
+    background:white;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+    }
+
+        .card h3{
+    font-size:13px;
+    color:#6b7280;
+    margin-bottom:10px;
+    }
+
+        .card h2{
+    font-size:32px;
+    font-weight:700;
+    }
+
+    .cards::-webkit-scrollbar{
+    display:none;
+    }
+
+        .table-container{
+            background:white;
+            padding:25px;
+            border-radius:18px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.05);
+            overflow-x:auto;
+        }
+
+       table{
+    width:100%;
+    min-width:1200px;
+    border-collapse:collapse;
+}
+
+       table th{
+    background:#111827;
+    color:white;
+    padding:10px 4px;
+    text-align:center;
+    font-size:9px;
+    word-wrap:break-word;
+    }
+
+        table td{
+    padding:10px 4px;
+    border-bottom:1px solid #e5e7eb;
+    font-size:9px;
+    color:#374151;
+    text-align:center;
+    word-wrap:break-word;
+    }
+        tr:hover{
+            background:#f9fafb;
+        }
+
+        .status{
+    padding:4px 8px;
+    border-radius:20px;
+    color:white;
+    font-size:8px;
+    font-weight:600;
+    white-space:nowrap;
+    display:inline-block;
+}
+
+
+    .table-container{
+    background:white;
+    padding:14px;
+    border-radius:20px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.table-container::-webkit-scrollbar{
+    height:5px;
+}
+
+.table-container::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:20px;
+}
+
+table th,
+table td{
+    font-size:8px;
+    padding:8px 3px;
+}
+
+        .pending{
+            background:#f59e0b;
+        }
+
+        .completed{
+            background:#10b981;
+        }
+
+        .progress{
+            background:#3b82f6;
+        }
+
+        .return{
+            background:#ef4444;
+        }
+
+        .empty{
+            text-align:center;
+            padding:40px;
+            color:#6b7280;
+        }
+
+        @media(max-width:768px){
+
+    body{
+        display:block;
+        background:#eef2ff;
+    }
+
+    .sidebar{
+    width:100%;
+    height:auto;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    padding:16px;
+    margin-bottom:18px;
+}
+
+body.popup-open .sidebar,
+body.popup-open .main{
+    display:none;
+}
+
+body.popup-open #addJobPopup{
+    display:flex !important;
+}
+
+    .logo{
+        text-align:center;
+        font-size:24px;
+        margin-bottom:18px;
+        color:#60a5fa;
+    }
+
+    .menu{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    }
+
+    .menu-summary{
+    width:100%;
+    margin-top:12px;
+    background:#1f2937;
+    border-radius:14px;
+    padding:14px;
+    text-align:center;
+}
+
+.menu-summary h4{
+    color:#9ca3af;
+    font-size:12px;
+    margin-bottom:6px;
+    font-weight:500;
+}
+
+.menu-summary h2{
+    color:#10b981;
+    font-size:24px;
+    font-weight:700;
+}
+
+    .menu a{
+        flex:1;
+        text-align:center;
+        padding:12px;
+        background:#1f2937;
+        border-radius:14px;
+        font-size:14px;
+        font-weight:500;
+        color:white;
+    }
+
+    .menu a:hover{
+        background:#2563eb;
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
+        padding:16px;
+    }
+
+    .topbar{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
+        margin-bottom:20px;
+    }
+
+    .topbar h1{
+        font-size:26px;
+        color:#111827;
+    }
+
+    .logout-btn{
+        width:100%;
+        text-align:center;
+        padding:12px;
+        border-radius:14px;
+        font-weight:600;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .card{
+        border-radius:22px;
+        padding:24px;
+        box-shadow:0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .card h3{
+        font-size:15px;
+    }
+
+    .card h2{
+        font-size:34px;
+        margin-top:8px;
+    }
+
+    .table-container{
+    margin-top:20px;
+    border-radius:22px;
+    padding:0;
+    overflow-x:auto;
+    overflow-y:visible;
+    -webkit-overflow-scrolling:touch;
+    box-shadow:0 8px 24px rgba(0,0,0,0.06);
+    background:white;
+}
+
+    table{
+    width:100%;
+    min-width:1400px;
+}
+
+    table th{
+        padding:16px;
+        font-size:13px;
+    }
+
+    table td{
+        padding:16px;
+        font-size:13px;
+    }
+
+    .status{
+        padding:6px 14px;
+        border-radius:30px;
+        font-size:11px;
+    }
+
+    #addJobPopup{
+        padding:15px;
+    }
+
+    #addJobPopup > div{
+        width:100%;
+        max-height:92vh;
+        overflow-y:auto;
+        border-radius:24px;
+        padding:24px;
+    }
+
+    #addJobPopup h2{
+        font-size:24px;
+        margin-bottom:20px;
+    }
+
+    #addJobPopup form div{
+        grid-template-columns:1fr !important;
+    }
+
+    #addJobPopup input,
+    #addJobPopup select{
+        padding:15px !important;
+        border-radius:14px !important;
+        font-size:15px;
+    }
+
+    #addJobPopup button[type='submit']{
+        width:100%;
+        padding:15px !important;
+        border-radius:14px !important;
+        font-size:15px;
+        font-weight:600;
+    }
+
+#addJobPopup{
+    align-items:center !important;
+    justify-content:center !important;
+    padding:20px !important;
+    overflow-y:auto !important;
+}
+
+#addJobPopup > div{
+    width:95% !important;
+    max-width:900px !important;
+    max-height:95vh !important;
+    overflow-y:auto !important;
+    margin:auto !important;
+    border-radius:24px !important;
+}
+
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <div class="logo">
+            SNAPSHOT ADMIN
+        </div>
+
+        <div class="menu">
+
+            <a href="javascript:void(0)" onclick="openAddJob()">
+                Add Job
+            </a>
+
+            <a href="/admin/logout">
+                Logout
+            </a>
+            
+            <a href="/admin/khata">
+                 Khata
+            </a>
+
+           <div class="menu-summary" style="
+    padding:10px;
+    border-radius:14px;
+">
+
+    <h4 style="
+        color:#9ca3af;
+        font-size:11px;
+        margin-bottom:4px;
+        font-weight:500;
+    ">
+        Total Received
+    </h4>
+
+    <h2 style="
+        color:#10b981;
+        font-size:20px;
+        font-weight:700;
+        margin-bottom:10px;
+    ">
+        ₹ <%= jobs
+            .filter(job => job.payment === 'Paid')
+            .reduce((total, job) => total + Number(job.estimatedPrice || 0), 0)
+        %>
+    </h2>
+
+    <form action="/admin/dashboard" method="GET">
+
+        <div style="
+    display:flex;
+    gap:5px;
+    align-items:center;
+">
+
+    <input 
+        type="date"
+        name="startDate"
+        value="<%= startDate || '' %>"
+        style="
+            flex:1;
+            padding:5px;
+            border:none;
+            border-radius:8px;
+            font-size:10px;
+        "
+    >
+
+    <input 
+        type="date"
+        name="endDate"
+        value="<%= endDate || '' %>"
+        style="
+            flex:1;
+            padding:5px;
+            border:none;
+            border-radius:8px;
+            font-size:10px;
+        "
+    >
+
+    <button 
+        type="submit"
+        style="
+            padding:6px 10px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:10px;
+            cursor:pointer;
+        "
+    >
+        OK
+    </button>
+
+</div>
+
+    </form>
+
+</div>
+
+        </div>
+
+    </div>
+
+
+    <div class="main">
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Total Jobs</h3>
+
+                <h2>
+                    <%= jobs.length %>
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Pending Jobs</h3>
+
+                <h2>
+                    <%= jobs.filter(job => job.status === 'Pending').length %>
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Completed Jobs</h3>
+
+                <h2>
+                    <%= jobs.filter(job => job.status === 'Completed').length %>
+                </h2>
+
+            </div>
+
+           
+            <div class="card">
+
+         <h3>Return Jobs</h3>
+
+         <h2>
+          <%= jobs.filter(job => job.status === 'Return').length %>
+          </h2>
+
+           </div>
+
+        </div>
+
+
+        <div style="display:flex;justify-content:flex-end;margin:18px 0;">
+
+    <input 
+        type="text"
+        id="searchInput"
+        placeholder="Search Job / Customer"
+        style="
+            width:230px;
+            padding:10px 14px;
+            border:1px solid #d1d5db;
+            border-radius:10px;
+            outline:none;
+            font-size:14px;
+        "
+    >
+
+</div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Job No</th>
+                        <th>Customer</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Serial</th>
+                        <th>Problem</th>
+                        <th>Estimate Price</th>
+                        <th>Status</th>
+                        <th>Save Estimate</th>
+                        <th>Payment</th>
+                        <th>Repair Eng</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% if(jobs.length > 0){ %>
+
+                        <% jobs.forEach(job => { %>
+
+                            <tr>
+
+                                <td><%= job.jobNumber %></td>
+
+                                <td><%= job.customerName %></td>
+
+                                <td><%= job.brand %></td>
+
+                                <td><%= job.modelNumber %></td>
+
+                                <td><%= job.serialNumber %></td>
+
+                                <td><%= job.problem %></td>
+
+                                <td>₹ <%= job.estimatedPrice || '0' %></td>
+
+                                <td>
+
+<form action="/admin/update-status/<%= job._id %>" method="POST">
+
+    <select 
+        name="status"
+        onchange="this.form.submit()"
+        style="
+            padding:6px;
+            border-radius:6px;
+            border:1px solid #ccc;
+            font-size:11px;
+        "
+    >
+
+        <option value="Pending" <%= job.status === 'Pending' ? 'selected' : '' %>>
+            Pending
+        </option>
+
+        <option value="In Progress" <%= job.status === 'In Progress' ? 'selected' : '' %>>
+            In Progress
+        </option>
+
+        <option value="Completed" <%= job.status === 'Completed' ? 'selected' : '' %>>
+            Completed
+        </option>
+
+        <option value="Return" <%= job.status === 'Return' ? 'selected' : '' %>>
+            Return
+        </option>
+
+    </select>
+
+</form>
+
+</td>
+                                  <td>
+    <form action="/admin/update-estimate/<%= job._id %>" method="POST" style="display:flex;gap:6px;align-items:center;justify-content:center;">
+        <input
+            type="text"
+            name="estimatedPrice"
+            value="<%= job.estimatedPrice || '' %>"
+            placeholder="Amount"
+            style="width:80px;padding:6px;border:1px solid #ccc;border-radius:6px;"
+        >
+        <button
+            type="submit"
+            style="border:none;background:#2563eb;color:white;padding:6px 10px;border-radius:6px;cursor:pointer;"
+        >
+            Save
+        </button>
+    </form>
+</td>
+
+<td>
+
+<form action="/admin/update-payment/<%= job._id %>" method="POST">
+
+    <select 
+        name="payment"
+        onchange="this.form.submit()"
+        style="
+            padding:6px;
+            border-radius:6px;
+            border:1px solid #ccc;
+        "
+    >
+
+        <option value="" <%= !job.payment ? 'selected' : '' %>>
+    None
+</option>
+
+<option value="Unpaid" <%= job.payment === 'Unpaid' ? 'selected' : '' %>>
+    Unpaid
+</option>
+
+<option value="Paid" <%= job.payment === 'Paid' ? 'selected' : '' %>>
+    Paid
+</option>
+
+    </select>
+
+</form>
+
+</td>
+
+<td>
+
+<select 
+    onchange="updateEngineer('<%= job._id %>', this.value)"
+    style="
+        padding:6px;
+        border-radius:6px;
+        border:1px solid #ccc;
+    "
+>
+
+<option 
+    value="None"
+    <%= String(job.repairEngineer || '').trim() === 'None' ? 'selected' : '' %>>
+    None
+</option>
+
+<option 
+    value="Roshan"
+    <%= String(job.repairEngineer || '').trim() === 'Roshan' ? 'selected' : '' %>>
+    Roshan
+</option>
+
+<option 
+    value="Ajay"
+    <%= String(job.repairEngineer || '').trim() === 'Ajay' ? 'selected' : '' %>>
+    Ajay
+</option>
+
+</select>
+
+</td>
+                                <td>
+    <a href="/job/<%= job.jobNumber %>" style="text-decoration:none; color:#2563eb; font-weight:600;">View</a>
+
+    |
+
+    <a href="/admin/edit-job/<%= job._id %>" style="text-decoration:none; color:#f59e0b; font-weight:600;">Edit</a>
+
+    |
+
+    <a href="/admin/delete-job/<%= job._id %>" onclick="return confirm('Delete this job?')" style="text-decoration:none; color:#ef4444; font-weight:600;">Delete</a>
+</td>
+                            </tr>
+
+                        <% }) %>
+
+                    <% } else { %>
+
+                        <tr>
+
+                            <td colspan="8" class="empty">
+                                No Jobs Found
+                            </td>
+
+                        </tr>
+
+                    <% } %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="addJobPopup" style="
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.5);
+        display:none;
+        justify-content:center;
+        align-items:center;
+        z-index:999;
+    ">
+
+        <div style="
+            background:white;
+            width:90%;
+            max-width:800px;
+            padding:30px;
+            border-radius:20px;
+            position:relative;
+        ">
+
+            <button 
+                onclick="closeAddJob()"
+                style="
+                    position:absolute;
+                    right:20px;
+                    top:20px;
+                    border:none;
+                    background:red;
+                    color:white;
+                    width:35px;
+                    height:35px;
+                    border-radius:50%;
+                    cursor:pointer;
+                "
+            >
+                X
+            </button>
+
+            <h2 style="margin-bottom:20px;">
+                Add New Job
+            </h2>
+
+            <form action="/admin/add-job" method="POST">
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+                    gap:15px;
+                ">
+
+                    <input 
+    type="text"
+    name="jobNumber"
+    id="jobNumber"
+    placeholder="Job Number"
+    required
+    style="padding:14px;border:1px solid #ccc;border-radius:10px;"
+>
+
+                    <input type="text" name="customerName" placeholder="Customer Name" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
+
+                    <input type="text" name="mobile" placeholder="Customer Mobile Number" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
+
+                    <input type="text" name="brand" placeholder="Brand" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
+
+                    <input type="text" name="modelNumber" placeholder="Model Number" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
+
+                    <input type="text" name="serialNumber" placeholder="Serial Number" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
+
+                    <input type="text" name="problem" placeholder="Problem" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
+                    
+                    
+                    <input 
+    type="date"
+    name="jobDate"
+    id="jobDate"
+    value="<%= new Date().toISOString().split('T')[0] %>"
+    style="padding:14px;border:1px solid #ccc;border-radius:10px;"
+>
+
+                </div>
+
+                <button 
+                    type="submit"
+                    style="
+                        margin-top:20px;
+                        background:#2563eb;
+                        color:white;
+                        border:none;
+                        padding:14px 22px;
+                        border-radius:12px;
+                        cursor:pointer;
+                    "
+                >
+                    Add Job
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+<script>
+
+const nextJobNumber = "JB<%= nextJobNumber %>";
+
+function openAddJob(){
+
+    document.getElementById("addJobPopup").style.display = "flex";
+
+    document.getElementById("jobNumber").value = nextJobNumber;
+
+    document.body.classList.add("popup-open");
+
+}
+
+function closeAddJob(){
+
+    document.getElementById("addJobPopup").style.display = "none";
+
+    document.body.classList.remove("popup-open");
+
+}
+
+</script>
+    
+<script>
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function(){
+
+    const value = this.value.toLowerCase();
+
+    const rows = document.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+
+        const text = row.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            row.style.display = "";
+        }else{
+            row.style.display = "none";
+        }
+
+    });
+
+});
+
+</script>
+
+<script>
+
+async function updateEngineer(id, engineer){
+
+    try{
+
+        const response = await fetch(`/admin/update-engineer/${id}`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                repairEngineer: engineer
+            })
+
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        if(data.success){
+
+            alert("Engineer Saved Successfully");
+
+        }
+
+    }catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
