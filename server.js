@@ -298,7 +298,10 @@ const autoJobNumber = "JB" + (maxJobNumber + 1);
 const trackUrl = `https://snapshot-repair-system.onrender.com/job/${newJob.jobNumber}`;
 
 const whatsappMessage =
-`Hello ${newJob.customerName}, your job card has been created. Track here: ${trackUrl}`;
+`Hello ${newJob.customerName}, your job card has been created. Track here: ${trackUrl}
+
+*SNAPSHOT COMPUTER*
+"CONTACT NO:- 7770000493 | 8149295882"`;
 
 const whatsappUrl =
 `https://wa.me/91${newJob.mobile}?text=${encodeURIComponent(whatsappMessage)}`;
