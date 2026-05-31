@@ -295,7 +295,7 @@ const autoJobNumber = "JB" + (maxJobNumber + 1);
 
 });
 
-const trackUrl = `http://localhost:5000/job/${newJob.jobNumber}`;
+const trackUrl = `https://snapshot-repair-system.onrender.com/job/${newJob.jobNumber}`;
 
 const whatsappMessage =
 `Hello ${newJob.customerName}, your job card has been created. Track here: ${trackUrl}`;
