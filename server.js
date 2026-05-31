@@ -631,7 +631,7 @@ app.get("/engineer/dashboard", checkEngineer, async (req, res) => {
     try{
 
         const jobs = await Job.find({
-    repairEngineer:"Roshan"
+     repairEngineer: req.session.engineerName
 });
 
         res.render("engineer-dashboard", { jobs });
