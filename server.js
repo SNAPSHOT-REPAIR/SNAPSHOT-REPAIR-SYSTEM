@@ -300,6 +300,9 @@ const trackUrl = `https://snapshot-repair-system.onrender.com/job/${newJob.jobNu
 const whatsappMessage =
 `Hello ${newJob.customerName}, your job card has been created. Track here: ${trackUrl}
 
+
+
+
 *SNAPSHOT COMPUTER*
 "CONTACT NO:- 7770000493 | 8149295882"`;
 
