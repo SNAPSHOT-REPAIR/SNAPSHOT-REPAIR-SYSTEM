@@ -384,7 +384,7 @@ app.get("/admin/dashboard", checkAdmin, async (req, res) => {
                 $lte: endDate
             };
 
-        else{
+        }else{
 
         filter = {};
 
