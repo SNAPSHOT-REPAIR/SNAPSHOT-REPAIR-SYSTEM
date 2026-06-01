@@ -295,7 +295,7 @@ const autoJobNumber = "JB" + (maxJobNumber + 1);
 
 });
 
-const trackUrl = `https://snapshot-repair-system.onrender.com/job/${newJob.jobNumber}`;
+const trackUrl = `https://snapshotrepair.in/job/${newJob.jobNumber}`;
 
 const whatsappMessage =
 `Hello ${newJob.customerName}, your job card has been created. Track here: ${trackUrl}
@@ -304,7 +304,7 @@ const whatsappMessage =
 
 
 *SNAPSHOT COMPUTER*
-"CONTACT NO:- 7770000493 | 8149295882"`;
+*CONTACT NO:- 📞 +91 7770000493 | 8149295882*`;
 
 const whatsappUrl =
 `https://wa.me/91${newJob.mobile}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -384,15 +384,9 @@ app.get("/admin/dashboard", checkAdmin, async (req, res) => {
                 $lte: endDate
             };
 
-        }else{
+        else{
 
-            // CURRENT MONTH DATA
-            const firstDay = new Date();
-            firstDay.setDate(1);
-
-            filter.createdAt = {
-                $gte: firstDay
-            };
+        filter = {};
 
         }
 
