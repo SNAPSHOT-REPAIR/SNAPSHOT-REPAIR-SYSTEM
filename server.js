@@ -298,10 +298,18 @@ const autoJobNumber = "JB" + (maxJobNumber + 1);
 const trackUrl = `https://snapshotrepair.in/job/${newJob.jobNumber}`;
 
 const whatsappMessage =
-`Hello ${newJob.customerName}, your job card has been created. Track here: ${trackUrl}
+`Hello ${newJob.customerName},
 
+🌐 Website:
+https://snapshotrepair.in
 
+📋 Job Card Number:
+${newJob.jobNumber}
 
+🔐 Access Code:
+Enter your mobile last 4 digits ( Krapya mobile number ke antim 4 number dale )
+
+🙏 Thank you for choosing us.
 
 *SNAPSHOT COMPUTER*
 *CONTACT NO:- 📞 +91 7770000493 | 8149295882*`;
