@@ -307,12 +307,13 @@ https://snapshotrepair.in
 ${newJob.jobNumber}
 
 🔐 Access Code:
-Enter your mobile last 4 digits ( Krapya mobile number ke antim 4 number dale )
+Enter your mobile last 4 digits 
+( कृपया अपने मोबाइल नंबर के अंतिम 4 अंक दर्ज करें। )
 
 🙏 Thank you for choosing us.
 
 *SNAPSHOT COMPUTER*
-*CONTACT NO:- 📞 +91 7770000493 | 8149295882*`;
+*📞 +91 7770000493 | 8149295882*`;
 
 const whatsappUrl =
 `https://wa.me/91${newJob.mobile}?text=${encodeURIComponent(whatsappMessage)}`;
