@@ -346,6 +346,7 @@
                         <th>Current Status</th>
                         <th>Repair Eng</th>
                         <th>Update Status</th>
+                        <th>Remark</th>
 
                     </tr>
 
@@ -427,7 +428,34 @@
     </form>
 
 </td>
+ 
+         <td>
 
+<form action="/engineer/update-remark/<%= job._id %>" method="POST">
+
+    <input
+        type="text"
+        name="remark"
+        value="<%= job.remark || '' %>"
+        placeholder="Repair Work"
+        style="
+            width:140px;
+            padding:6px;
+            border:1px solid #ccc;
+            border-radius:6px;
+        "
+    >
+
+    <button
+        type="submit"
+        class="update-btn"
+    >
+        Save
+    </button>
+
+</form>
+
+</td>
                         </tr>
 
                     <% }) %>
