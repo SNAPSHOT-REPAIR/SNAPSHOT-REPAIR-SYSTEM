@@ -628,6 +628,7 @@ body.popup-open #addJobPopup{
                         <th>Save Estimate</th>
                         <th>Payment</th>
                         <th>Repair Eng</th>
+                        <th>Remark</th>
                         <th>Action</th>
 
                     </tr>
@@ -774,6 +775,11 @@ body.popup-open #addJobPopup{
 </select>
 
 </td>
+
+<td>
+    <%= job.remark || '-' %>
+</td>
+
                                 <td>
     <a href="/job/<%= job.jobNumber %>" style="text-decoration:none; color:#2563eb; font-weight:600;">View</a>
 
