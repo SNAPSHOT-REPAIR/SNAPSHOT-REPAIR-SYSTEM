@@ -641,9 +641,9 @@ app.get("/engineer/dashboard", checkEngineer, async (req, res) => {
 
     try{
 
-        const jobs = await Job.find({
-    repairEngineer:"None"
-});
+        const jobs = await Job.find().sort({
+            createdAt: -1
+        });
 
         res.render("engineer-dashboard", { jobs });
 
