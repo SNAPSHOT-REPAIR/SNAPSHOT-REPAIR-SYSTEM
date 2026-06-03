@@ -118,11 +118,13 @@ app.post("/engineer/login", (req, res) => {
     const { username, password } = req.body;
 
     if(
-    username === process.env.ENGINEER_USER &&
-    password === process.env.ENGINEER_PASS
-){
+        username === process.env.ENGINEER_USER &&
+        password === process.env.ENGINEER_PASS
+    ){
 
         req.session.isEngineer = true;
+
+        req.session.engineerName = "Roshan";
 
         return res.redirect("/engineer/dashboard");
 
