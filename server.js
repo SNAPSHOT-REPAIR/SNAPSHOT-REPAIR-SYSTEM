@@ -675,6 +675,28 @@ app.post("/engineer/update-status/:id", checkEngineer, async (req, res) => {
 
 });
 
+app.post("/engineer/update-remark/:id", checkEngineer, async (req, res) => {
+
+    try {
+
+        await Job.findByIdAndUpdate(
+            req.params.id,
+            {
+                remark: req.body.remark
+            }
+        );
+
+        res.redirect("/engineer/dashboard");
+
+    } catch (err) {
+
+        console.log(err);
+        res.send("Error Saving Remark");
+
+    }
+
+});
+
 app.get("/engineer/logout", (req, res) => {
 
     req.session.destroy();
