@@ -679,9 +679,6 @@ app.post("/engineer/update-remark/:id", checkEngineer, async (req, res) => {
 
     try {
 
-        console.log("ID =>", req.params.id);
-        console.log("REMARK =>", req.body.remark);
-
         const updatedJob = await Job.findByIdAndUpdate(
             req.params.id,
             {
@@ -695,13 +692,13 @@ app.post("/engineer/update-remark/:id", checkEngineer, async (req, res) => {
         );
 
         console.log("UPDATED JOB =>", updatedJob);
+        console.log("REMARK FIELD =>", updatedJob.remark);
 
         res.redirect("/engineer/dashboard");
 
     } catch (err) {
 
-        console.log("ERROR =>", err);
-
+        console.log(err);
         res.send("Error Saving Remark");
 
     }
