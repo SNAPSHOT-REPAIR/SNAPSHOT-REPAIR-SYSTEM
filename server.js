@@ -679,10 +679,14 @@ app.post("/engineer/update-remark/:id", checkEngineer, async (req, res) => {
 
     try {
 
+        console.log("REMARK =>", req.body.remark);
+
         await Job.findByIdAndUpdate(
             req.params.id,
             {
-                remark: req.body.remark
+                $set: {
+                    remark: req.body.remark
+                }
             }
         );
 
