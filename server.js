@@ -679,22 +679,29 @@ app.post("/engineer/update-remark/:id", checkEngineer, async (req, res) => {
 
     try {
 
+        console.log("ID =>", req.params.id);
         console.log("REMARK =>", req.body.remark);
 
-        await Job.findByIdAndUpdate(
+        const updatedJob = await Job.findByIdAndUpdate(
             req.params.id,
             {
                 $set: {
                     remark: req.body.remark
                 }
+            },
+            {
+                new: true
             }
         );
+
+        console.log("UPDATED JOB =>", updatedJob);
 
         res.redirect("/engineer/dashboard");
 
     } catch (err) {
 
-        console.log(err);
+        console.log("ERROR =>", err);
+
         res.send("Error Saving Remark");
 
     }
