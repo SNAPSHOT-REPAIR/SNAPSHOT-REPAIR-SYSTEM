@@ -107,16 +107,18 @@
     }
 
     .search-box{
-      width:100%;
-      max-width:650px;
-      margin:auto;
-      display:flex;
-      align-items:center;
-      background:white;
-      border:4px solid #111;
-      border-radius:60px;
-      overflow:hidden;
-    }
+width:100%;
+max-width:700px;
+margin:auto;
+display:flex;
+align-items:center;
+background:white;
+border:none;
+border-radius:25px;
+overflow:hidden;
+padding:8px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
 
     .search-box input{
       flex:1;
@@ -429,14 +431,12 @@
   }
 
   .search-box{
-    border:none;
-    border-radius:22px;
-    overflow:hidden;
     background:white;
-    box-shadow:0 8px 30px rgba(0,0,0,0.10);
-    padding:6px;
+    border-radius:40px;
+    padding:8px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
   }
-
+  
   .search-box input{
     padding:18px 16px;
     font-size:15px;
@@ -445,12 +445,13 @@
   }
 
   .search-box button{
-    padding:18px 20px;
-    font-size:14px;
-    border-radius:18px;
-    background:linear-gradient(135deg,#000,#222);
+    background:#0d5be1;
+    color:white;
+    border-radius:30px;
+    padding:16px 25px;
+    font-size:15px;
     font-weight:700;
-  }
+    }
 
   .search-box button:active{
     transform:scale(0.97);
@@ -487,6 +488,59 @@
   .bottom-nav a:active{
     transform:scale(0.92);
   }
+
+  .track-banner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:30px;
+}
+
+.track-left h1{
+    font-size:42px;
+    line-height:1.1;
+    color:#07142f;
+    font-weight:900;
+}
+
+.track-left p{
+    margin-top:15px;
+    color:#666;
+    font-size:18px;
+    line-height:1.5;
+}
+
+.track-right img{
+    width:250px;
+}
+
+@media(max-width:768px){
+
+.track-banner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px;
+    border-radius:20px;
+    gap:10px;
+}
+
+.track-left h1{
+    font-size:28px;
+}
+
+.track-left p{
+    font-size:14px;
+}
+
+.track-right img{
+    width:140px;
+}
+
+}
 
   .popup-box{
     border-radius:24px;
@@ -549,12 +603,55 @@
 
   </div>
 
+<div style="
+max-width:900px;
+margin:25px auto;
+padding:0 15px;
+">
 
+<video
+autoplay
+muted
+loop
+playsinline
+style="
+width:100%;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+"
+>
+<source src="/banner.mp4" type="video/mp4">
+</video>
+
+</div>
+  
   <!-- TRACK SECTION -->
 
   <section class="track-section" id="track-section">
 
-    <h2>TRACK YOUR REPAIR CASE</h2>
+
+    
+    <div class="track-banner">
+
+    <div class="track-left">
+
+        <h1>TRACK YOUR<br>REPAIR CASE</h1>
+
+        <p>
+            Enter your job card number to get
+            the latest status of your repair.
+        </p>
+
+    </div>
+
+    <div class="track-right">
+
+        <img src="/track.png" alt="Track">
+
+    </div>
+
+   </div>
+
 
     <form class="search-box" id="trackForm">
 
