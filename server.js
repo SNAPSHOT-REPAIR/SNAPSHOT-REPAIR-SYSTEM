@@ -9,6 +9,7 @@ const session = require("express-session");
 const helmet = require("helmet");
 const app = express();
 
+console.log(Job.schema.paths);
 
 // DATABASE CONNECT
 console.log("MONGO_URI =", process.env.MONGO_URI);

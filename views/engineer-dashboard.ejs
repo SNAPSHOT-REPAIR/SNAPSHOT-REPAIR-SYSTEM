@@ -340,6 +340,7 @@
                     <tr>
 
                         <th>Job Card</th>
+                        <th>Date</th>
                         <th>Brand</th>
                         <th>Model</th>
                         <th>Serial Number</th>
@@ -364,9 +365,13 @@
                             </td>
                             
                             <td>
+                                <%= job.jobDate ? new Date(job.jobDate).toLocaleDateString('en-GB') : '' %>
+                            </td>
+
+                            <td>
                                 <%= job.brand %>
                            </td>
-                           
+
                             <td>
                                 <%= job.modelNumber %>
                             </td>
