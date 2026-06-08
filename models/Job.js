@@ -36,7 +36,12 @@ const jobSchema = new mongoose.Schema({
         type:String,
         default:"None"
     },
-
+    
+    remark:{
+    type:String,
+    default:""
+    },
+    
     engineerNotes:String,
 
     estimatedPrice:String,
@@ -52,6 +57,11 @@ const jobSchema = new mongoose.Schema({
         default:Date.now
     },
 
+    accessories:{
+    type:String,
+    default:""
+    },
+    
     failedAttempts:{
         type:Number,
         default:0
