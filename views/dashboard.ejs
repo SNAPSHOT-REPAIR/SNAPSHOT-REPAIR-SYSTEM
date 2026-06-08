@@ -883,7 +883,15 @@ body.popup-open #addJobPopup{
 
                     <input type="text" name="customerName" placeholder="Customer Name" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
 
-                    <input type="text" name="mobile" placeholder="Customer Mobile Number" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
+                   <input
+    type="text"
+    name="mobile"
+    placeholder="Customer Mobile Number"
+    maxlength="10"
+    pattern="[0-9]{10}"
+    required
+    oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+    style="padding:14px;border:1px solid #ccc;border-radius:10px;">
 
                     <input type="text" name="brand" placeholder="Brand" required style="padding:14px;border:1px solid #ccc;border-radius:10px;">
 
