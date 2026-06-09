@@ -21,7 +21,9 @@ const jobSchema = new mongoose.Schema({
     serialNumber:String,
 
     problem:String,
-
+    
+    accessories:String,
+    
     status:{
         type:String,
         default:"Received"
@@ -61,7 +63,7 @@ const jobSchema = new mongoose.Schema({
     type:String,
     default:""
     },
-    
+
     failedAttempts:{
         type:Number,
         default:0
