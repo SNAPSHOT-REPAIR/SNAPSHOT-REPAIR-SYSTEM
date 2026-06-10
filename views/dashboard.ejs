@@ -752,12 +752,14 @@ body.popup-open #addJobPopup{
 
 <td>
 
-<select 
-    onchange="updateEngineer('<%= job._id %>', this.value)"
+<select
+    onchange="changeEngineerColor(this); updateEngineer('<%= job._id %>', this.value)"
     style="
         padding:6px;
+        border:none;
         border-radius:6px;
-        border:1px solid #ccc;
+        color:white;
+        font-weight:bold;
     "
 >
 
@@ -1071,6 +1073,24 @@ function changePaymentColor(select){
 
 }
 
+function changeEngineerColor(select){
+
+    if(select.value === "Ajay"){
+        select.style.backgroundColor = "#38bdf8"; // Sky Blue
+    }
+
+    else if(select.value === "Roshan"){
+        select.style.backgroundColor = "#facc15"; // Yellow
+        select.style.color = "#000";
+    }
+
+    else{
+        select.style.backgroundColor = "#6b7280"; // Gray
+        select.style.color = "#fff";
+    }
+
+}
+
 document.addEventListener("DOMContentLoaded", function(){
 
     document.querySelectorAll('select[name="status"]').forEach(function(select){
@@ -1084,6 +1104,12 @@ document.addEventListener("DOMContentLoaded", function(){
         changePaymentColor(select);
 
     });
+    
+    document.querySelectorAll('select[onchange*="updateEngineer"]').forEach(function(select){
+
+    changeEngineerColor(select);
+
+});
 
 });
 
