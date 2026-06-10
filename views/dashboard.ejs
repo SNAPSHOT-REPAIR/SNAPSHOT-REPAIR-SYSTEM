@@ -721,14 +721,16 @@ body.popup-open #addJobPopup{
 <form action="/admin/update-payment/<%= job._id %>" method="POST">
 
     <select 
-        name="payment"
-        onchange="this.form.submit()"
-        style="
-            padding:6px;
-            border-radius:6px;
-            border:1px solid #ccc;
-        "
-    >
+    name="payment"
+    onchange="changePaymentColor(this); this.form.submit();"
+    style="
+        padding:6px;
+        border-radius:6px;
+        border:none;
+        color:white;
+        font-weight:bold;
+    "
+>
 
         <option value="" <%= !job.payment ? 'selected' : '' %>>
     None
@@ -1053,11 +1055,33 @@ function changeStatusColor(select){
     }
 }
 
+function changePaymentColor(select){
+
+    if(select.value === "Paid"){
+        select.style.backgroundColor = "#10b981";
+    }
+
+    else if(select.value === "Unpaid"){
+        select.style.backgroundColor = "#ef4444";
+    }
+
+    else{
+        select.style.backgroundColor = "#6b7280";
+    }
+
+}
+
 document.addEventListener("DOMContentLoaded", function(){
 
     document.querySelectorAll('select[name="status"]').forEach(function(select){
 
         changeStatusColor(select);
+
+    });
+
+    document.querySelectorAll('select[name="payment"]').forEach(function(select){
+
+        changePaymentColor(select);
 
     });
 
