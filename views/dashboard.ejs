@@ -665,15 +665,17 @@ body.popup-open #addJobPopup{
 <form action="/admin/update-status/<%= job._id %>" method="POST">
 
     <select 
-        name="status"
-        onchange="this.form.submit()"
-        style="
-            padding:6px;
-            border-radius:6px;
-            border:1px solid #ccc;
-            font-size:11px;
-        "
-    >
+    name="status"
+    onchange="changeStatusColor(this); this.form.submit();"
+    style="
+        padding:6px;
+        border-radius:6px;
+        border:none;
+        font-size:11px;
+        color:white;
+        font-weight:bold;
+    "
+>
 
         <option value="Pending" <%= job.status === 'Pending' ? 'selected' : '' %>>
             Pending
@@ -1030,6 +1032,37 @@ async function updateEngineer(id, engineer){
 }
 
 </script>
+<script>
 
+function changeStatusColor(select){
+
+    if(select.value === "Pending"){
+        select.style.backgroundColor = "#f59e0b";
+    }
+
+    else if(select.value === "In Progress"){
+        select.style.backgroundColor = "#3b82f6";
+    }
+
+    else if(select.value === "Completed"){
+        select.style.backgroundColor = "#10b981";
+    }
+
+    else if(select.value === "Return"){
+        select.style.backgroundColor = "#ef4444";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    document.querySelectorAll('select[name="status"]').forEach(function(select){
+
+        changeStatusColor(select);
+
+    });
+
+});
+
+</script>
 </body>
 </html>
