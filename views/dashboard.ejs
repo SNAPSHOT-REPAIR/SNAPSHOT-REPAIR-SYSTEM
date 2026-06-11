@@ -98,11 +98,10 @@
         }
 
         .cards{
-        display:flex;
-        gap:12px;
-        overflow-x:auto;
-        padding-bottom:5px;
-        }
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:12px;
+}
 
         .card{
     min-width:110px;
@@ -326,9 +325,10 @@ body.popup-open #addJobPopup{
     }
 
     .cards{
-        grid-template-columns:1fr;
-        gap:16px;
-    }
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
 
     .card{
         border-radius:22px;
@@ -577,7 +577,16 @@ body.popup-open #addJobPopup{
 
             </div>
 
-           
+           <div class="card">
+
+             <h3>In Progress Jobs</h3>
+
+            <h2>
+            <%= jobs.filter(job => job.status === 'In Progress').length %>
+          </h2>
+
+       </div>
+
             <div class="card">
 
          <h3>Return Jobs</h3>
