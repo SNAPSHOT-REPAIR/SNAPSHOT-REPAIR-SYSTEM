@@ -303,20 +303,26 @@ const trackUrl = `https://snapshotrepair.in/job/${newJob.jobNumber}`;
 const whatsappMessage =
 `Hello ${newJob.customerName},
 
-🌐 Website:
+
+📋 *Job Card:* ${newJob.jobNumber}
+
+💻 *Brand:* ${newJob.brand}
+
+🖥 *Model:* ${newJob.modelNumber}
+
+🔧 *Problem:* ${newJob.problem}
+
+🌐 *Track Repair Status:*
 https://snapshotrepair.in
 
-📋 Job Card Number:
-${newJob.jobNumber}
-
-🔐 Access Code:
-Enter your mobile last 4 digits 
-( कृपया अपने मोबाइल नंबर के अंतिम 4 अंक दर्ज करें। )
+🔐 *Access Code:*
+Enter the last 4 digits of your mobile number.
+(कृपया अपने मोबाइल नंबर के अंतिम 4 अंक दर्ज करें)
 
 🙏 Thank you for choosing us.
 
 *SNAPSHOT COMPUTER*
-*📞 +91 7770000493 | 8149295882*`;
+📞 +91 7770000493 | 8149295882`;
 
 const whatsappUrl =
 `https://wa.me/91${newJob.mobile}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -473,8 +479,8 @@ app.post("/admin/edit-job/:id", checkAdmin, async (req, res) => {
             modelNumber:req.body.modelNumber,
             serialNumber:req.body.serialNumber,
             problem:req.body.problem,
-            status:req.body.status
-
+            status:req.body.status,
+            accessories:req.body.accessories
         });
 
         res.redirect("/admin/dashboard");
