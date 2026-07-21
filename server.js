@@ -609,21 +609,22 @@ app.get("/admin/khata", checkAdmin, async (req, res) => {
 
         jobs.forEach(job => {
 
-            const name = job.customerName.trim();
+            // Case-insensitive key
+            const key = job.customerName.trim().toLowerCase();
 
-            if(!groupedJobs[name]){
+            if(!groupedJobs[key]){
 
-                groupedJobs[name] = {
-                    customerName: name,
+                groupedJobs[key] = {
+                    customerName: job.customerName.trim(),
                     jobs: [],
                     totalAmount: 0
                 };
 
             }
 
-            groupedJobs[name].jobs.push(job);
+            groupedJobs[key].jobs.push(job);
 
-            groupedJobs[name].totalAmount += Number(job.estimatedPrice || 0);
+            groupedJobs[key].totalAmount += Number(job.estimatedPrice || 0);
 
         });
 
