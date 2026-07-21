@@ -473,14 +473,15 @@ app.post("/admin/edit-job/:id", checkAdmin, async (req, res) => {
 
         await Job.findByIdAndUpdate(req.params.id, {
 
-            jobNumber:autoJobNumber,
-            customerName:req.body.customerName,
-            brand:req.body.brand,
-            modelNumber:req.body.modelNumber,
-            serialNumber:req.body.serialNumber,
-            problem:req.body.problem,
-            status:req.body.status,
-            accessories:req.body.accessories
+            jobNumber: req.body.jobNumber,
+            customerName: req.body.customerName,
+            brand: req.body.brand,
+            modelNumber: req.body.modelNumber,
+            serialNumber: req.body.serialNumber,
+            problem: req.body.problem,
+            status: req.body.status,
+            accessories: req.body.accessories
+
         });
 
         res.redirect("/admin/dashboard");
@@ -602,11 +603,33 @@ app.get("/admin/khata", checkAdmin, async (req, res) => {
 
     try{
 
-        const jobs = await Job.find({
-            payment: "Unpaid"
+        const jobs = await Job.find({ payment: "Unpaid" });
+
+        const groupedJobs = {};
+
+        jobs.forEach(job => {
+
+            const name = job.customerName.trim();
+
+            if(!groupedJobs[name]){
+
+                groupedJobs[name] = {
+                    customerName: name,
+                    jobs: [],
+                    totalAmount: 0
+                };
+
+            }
+
+            groupedJobs[name].jobs.push(job);
+
+            groupedJobs[name].totalAmount += Number(job.estimatedPrice || 0);
+
         });
 
-        res.render("khata", { jobs });
+        res.render("khata", {
+            parties: Object.values(groupedJobs)
+        });
 
     }catch(err){
 

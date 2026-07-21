@@ -3,299 +3,369 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repair Khata</title>
+
+<title>Dealer Khata</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-    background:#f3f6fb;
-    padding:25px;
-    color:#111827;
+background:#eef3f9;
+padding:25px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-    gap:15px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+flex-wrap:wrap;
+gap:15px;
 }
 
-.heading h1{
-    font-size:34px;
-    font-weight:700;
-}
-
-.heading p{
-    color:#6b7280;
-    margin-top:5px;
+.topbar h1{
+font-size:34px;
+font-weight:700;
+color:#111827;
 }
 
 .back-btn{
-    text-decoration:none;
-    background:#111827;
-    color:white;
-    padding:12px 20px;
-    border-radius:14px;
-    font-size:14px;
-    font-weight:500;
+background:#111827;
+color:white;
+padding:12px 22px;
+border-radius:12px;
+text-decoration:none;
+font-weight:600;
 }
 
-.cards{
-    display:flex;
-    gap:18px;
-    margin-bottom:28px;
+.summary{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-bottom:25px;
 }
 
-.cards .card{
-    flex:1;
-    min-width:0;
+.summary-card{
+background:white;
+border-radius:20px;
+padding:22px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
-.card{
-    background:white;
-    border-radius:24px;
-    padding:24px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+.summary-card h3{
+font-size:14px;
+color:#6b7280;
+margin-bottom:10px;
 }
 
-.card h3{
-    color:#6b7280;
-    font-size:14px;
-    margin-bottom:12px;
-    font-weight:500;
+.summary-card h2{
+font-size:34px;
+font-weight:700;
 }
 
-.card h2{
-    font-size:34px;
-    font-weight:700;
+.blue{
+border-left:6px solid #2563eb;
 }
 
-.total{
-    border-left:6px solid #2563eb;
+.red{
+border-left:6px solid #ef4444;
 }
 
-.pending{
-    border-left:6px solid #ef4444;
-}
-
-.overdue{
-    border-left:6px solid #f59e0b;
+.orange{
+border-left:6px solid #f59e0b;
 }
 
 .search-box{
-    margin-bottom:20px;
+margin-bottom:25px;
 }
 
 .search-box input{
-    width:100%;
-    max-width:350px;
-    padding:14px 16px;
-    border-radius:14px;
-    border:1px solid #d1d5db;
-    outline:none;
-    font-size:14px;
-    background:white;
+
+width:100%;
+max-width:420px;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:white;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+font-size:15px;
+
+outline:none;
+
 }
 
-.table-box{
-    background:white;
-    border-radius:26px;
-    overflow-x:auto;
-    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+.party-card{
+
+background:white;
+
+border-radius:22px;
+
+padding:22px;
+
+margin-bottom:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.07);
+
 }
 
-.table-box::-webkit-scrollbar{
-    height:6px;
+.party-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+cursor:pointer;
+
+flex-wrap:wrap;
+
+gap:15px;
+
 }
 
-.table-box::-webkit-scrollbar-thumb{
-    background:#cbd5e1;
-    border-radius:30px;
+.party-left h2{
+
+font-size:26px;
+
+color:#111827;
+
 }
 
-.table-title{
-    padding:24px;
-    border-bottom:1px solid #e5e7eb;
+.party-left p{
+
+color:#6b7280;
+
+margin-top:4px;
+
 }
 
-.table-title h2{
-    font-size:22px;
+.party-right{
+
+text-align:right;
+
 }
 
-table{
-    width:100%;
-    min-width:950px;
-    border-collapse:collapse;
+.party-right h3{
+
+font-size:14px;
+
+color:#6b7280;
+
 }
 
-th{
-    background:#111827;
-    color:white;
-    padding:16px;
-    font-size:13px;
-    text-align:center;
+.party-right h1{
+
+font-size:32px;
+
+color:#2563eb;
+
 }
 
-td{
-    padding:16px;
-    border-bottom:1px solid #e5e7eb;
-    font-size:13px;
-    text-align:center;
+.arrow{
+
+font-size:28px;
+
+transition:.3s;
+
 }
 
-tr:hover{
-    background:#f9fafb;
+.jobs{
+
+display:none;
+
+margin-top:20px;
+
 }
 
-.red-row{
-    background:#fee2e2;
+.job{
+
+display:grid;
+
+grid-template-columns:
+120px
+1fr
+1fr
+1fr
+120px
+120px;
+
+gap:15px;
+
+align-items:center;
+
+padding:16px;
+
+border-bottom:1px solid #ececec;
+
 }
 
-.days-badge{
-    padding:7px 12px;
-    border-radius:30px;
-    font-size:12px;
-    font-weight:600;
-    display:inline-block;
+.job:last-child{
+
+border-bottom:none;
+
 }
 
-.safe{
-    background:#dcfce7;
-    color:#166534;
-}
+.job strong{
 
-.danger{
-    background:#fecaca;
-    color:#991b1b;
+color:#111827;
+
 }
 
 .amount{
-    font-weight:700;
-    color:#2563eb;
+
+font-size:18px;
+
+font-weight:700;
+
+color:#2563eb;
+
 }
 
 .pay-btn{
-    border:none;
-    background:#10b981;
-    color:white;
-    padding:10px 16px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:13px;
-    font-weight:600;
+
+background:#10b981;
+
+color:white;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-weight:600;
+
 }
 
-.empty{
-    text-align:center;
-    padding:50px;
-    color:#6b7280;
-    font-size:16px;
+.pay-btn:hover{
+
+background:#059669;
+
 }
 
 @media(max-width:900px){
 
-.cards{
-    display:flex;
-    flex-direction:row;
-    gap:10px;
-}
+.summary{
 
-.cards .card{
-    flex:1;
-    padding:14px;
-}
-
-.card h3{
-    font-size:11px;
-}
-
-.card h2{
-    font-size:18px;
-}
+grid-template-columns:1fr;
 
 }
 
-@media(max-width:768px){
+.job{
 
-body{
-    padding:16px;
+grid-template-columns:1fr;
+
+gap:10px;
+
 }
 
-.heading h1{
-    font-size:28px;
+.party-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
 }
 
-.card{
-    padding:20px;
-}
+.party-right{
 
-.card h2{
-    font-size:28px;
-}
+text-align:left;
 
-th,
-td{
-    padding:14px;
-    font-size:12px;
 }
 
 }
 
 </style>
+
 </head>
+
 <body>
 
 <%
-const today = new Date();
-const totalAmount = jobs.reduce((total, job) => total + Number(job.estimatedPrice || 0), 0);
-const overdueCount = jobs.filter(job => {
-    const created = new Date(job.createdAt);
-    const diffDays = Math.floor((today - created) / (1000 * 60 * 60 * 24));
-    return diffDays >= 7;
+
+const today=new Date();
+
+const totalAmount=parties.reduce((t,p)=>t+p.totalAmount,0);
+
+const totalJobs=parties.reduce((t,p)=>t+p.jobs.length,0);
+
+const overdue=parties.filter(p=>{
+
+return p.jobs.some(j=>{
+
+const d=Math.floor((today-new Date(j.createdAt))/(1000*60*60*24));
+
+return d>=7;
+
+});
+
 }).length;
+
 %>
+
+<div class="container">
 
 <div class="topbar">
 
-<div class="heading">
-    <h1>Repair Khata</h1>
-    
-</div>
+<h1>Dealer Khata</h1>
 
 <a href="/admin/dashboard" class="back-btn">
-    Back
+
+← Dashboard
+
 </a>
 
 </div>
 
-<div class="cards">
+<div class="summary">
 
-<div class="card total">
-    <h3>Total Pending Amount</h3>
-    <h2>₹ <%= totalAmount %></h2>
+<div class="summary-card blue">
+
+<h3>Total Pending Amount</h3>
+
+<h2>₹ <%= totalAmount %></h2>
+
 </div>
 
-<div class="card pending">
-    <h3>Total Unpaid Jobs</h3>
-    <h2><%= jobs.length %></h2>
+<div class="summary-card red">
+
+<h3>Total Unpaid Jobs</h3>
+
+<h2><%= totalJobs %></h2>
+
 </div>
 
-<div class="card overdue">
-    <h3>Overdue Jobs (7+ Days)</h3>
-    <h2><%= overdueCount %></h2>
+<div class="summary-card orange">
+
+<h3>Total Dealers</h3>
+
+<h2><%= parties.length %></h2>
+
 </div>
 
 </div>
@@ -303,134 +373,281 @@ const overdueCount = jobs.filter(job => {
 <div class="search-box">
 
 <input
-    type="text"
-    id="searchInput"
-    placeholder="Search customer, job number, laptop..."
->
+type="text"
+id="searchInput"
+placeholder="Search Dealer Name">
 
 </div>
 
-<div class="table-box">
+<% if(parties.length > 0){ %>
 
+<% parties.forEach(function(party,index){ %>
 
+<div class="party-card">
 
-<table>
+<div
+class="party-header"
+onclick="toggleJobs('jobs<%= index %>', this)"
+>
 
-<thead>
-<tr>
-<th>Job Card</th>
-<th>Customer</th>
-<th>Laptop</th>
-<th>Problem</th>
-<th>Pending Amount</th>
-<th>Pending Days</th>
-<th>Mark Paid</th>
-</tr>
-</thead>
+<div class="party-left">
 
-<tbody>
+<h2>
+📂 <%= party.customerName %>
+</h2>
 
-<% if(jobs.length > 0){ %>
+<p>
 
-<% jobs.forEach(function(job){
+Total Jobs :
+<b><%= party.jobs.length %></b>
 
-const created = new Date(job.createdAt);
-const diffTime = today - created;
-const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+</p>
+
+</div>
+
+<div class="party-right">
+
+<h3>
+Pending Amount
+</h3>
+
+<h1>
+
+₹ <%= party.totalAmount %>
+
+</h1>
+
+</div>
+
+<div class="arrow">
+
+▼
+
+</div>
+
+</div>
+
+<div
+class="jobs"
+id="jobs<%= index %>"
+>
+
+<%
+
+party.jobs.forEach(function(job){
+
+const days=Math.floor(
+
+(today-new Date(job.createdAt))
+
+/
+
+(1000*60*60*24)
+
+);
 
 %>
 
-<tr class="<%= diffDays >= 7 ? 'red-row' : '' %>">
+<div class="job">
 
-<td>
-    <strong><%= job.jobNumber %></strong>
-</td>
+<div>
 
-<td>
-    <%= job.customerName %>
-</td>
+<strong>
 
-<td>
-    <%= job.brand %>
-    <%= job.modelNumber %>
-</td>
+<%= job.jobNumber %>
 
-<td>
-    <%= job.problem %>
-</td>
+</strong>
 
-<td class="amount">
-    ₹ <%= job.estimatedPrice || 0 %>
-</td>
+</div>
 
-<td>
+<div>
 
-<% if(diffDays >= 7){ %>
+<b>
 
-<span class="days-badge danger">
-    <%= diffDays %> Days
+<%= job.brand %>
+
+</b>
+
+<br>
+
+<%= job.modelNumber %>
+
+</div>
+
+<div>
+
+<%= job.problem %>
+
+</div>
+
+<div>
+
+Pending :
+
+<br>
+
+<span class="amount">
+
+₹ <%= job.estimatedPrice || 0 %>
+
 </span>
 
-<% } else { %>
+</div>
 
-<span class="days-badge safe">
-    <%= diffDays %> Days
+<div>
+
+<%
+
+if(days>=7){
+
+%>
+
+<span style="
+background:#ef4444;
+color:white;
+padding:7px 12px;
+border-radius:20px;
+font-size:12px;
+">
+
+<%= days %> Days
+
 </span>
 
-<% } %>
+<%
 
-</td>
+}else{
 
-<td>
+%>
 
-<form action="/admin/khata-paid/<%= job._id %>" method="POST">
+<span style="
+background:#10b981;
+color:white;
+padding:7px 12px;
+border-radius:20px;
+font-size:12px;
+">
 
-<button type="submit" class="pay-btn">
-    Paid
+<%= days %> Days
+
+</span>
+
+<%
+
+}
+
+%>
+
+</div>
+
+<div>
+
+<form
+action="/admin/khata-paid/<%= job._id %>"
+method="POST"
+>
+
+<button
+type="submit"
+class="pay-btn"
+>
+
+Paid
+
 </button>
 
 </form>
 
-</td>
-
-</tr>
-
-<% }) %>
-
-<% } else { %>
-
-<tr>
-<td colspan="7" class="empty">
-    No Pending Payments Found
-</td>
-</tr>
-
-<% } %>
-
-</tbody>
-
-</table>
+</div>
 
 </div>
 
+<%
+
+});
+
+%>
+
+</div>
+
+</div>
+
+<%
+
+});
+
+%>
+
+<%
+
+}else{
+
+%>
+
+<div
+style="
+background:white;
+padding:60px;
+text-align:center;
+border-radius:20px;
+font-size:20px;
+font-weight:600;
+"
+>
+
+No Pending Jobs Found
+
+</div>
+
+<%
+
+}
+
+%>
+
 <script>
 
-const searchInput = document.getElementById('searchInput');
+function toggleJobs(id, element){
 
-searchInput.addEventListener('keyup', function(){
+    const box = document.getElementById(id);
+    const arrow = element.querySelector(".arrow");
+
+    if(box.style.display === "block"){
+
+        box.style.display = "none";
+        arrow.innerHTML = "▼";
+        arrow.style.transform = "rotate(0deg)";
+
+    }else{
+
+        box.style.display = "block";
+        arrow.innerHTML = "▲";
+        arrow.style.transform = "rotate(180deg)";
+
+    }
+
+}
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function(){
 
     const value = this.value.toLowerCase();
 
-    const rows = document.querySelectorAll('tbody tr');
+    const cards = document.querySelectorAll(".party-card");
 
-    rows.forEach(row => {
+    cards.forEach(card=>{
 
-        const text = row.innerText.toLowerCase();
+        const text = card.innerText.toLowerCase();
 
         if(text.includes(value)){
-            row.style.display = '';
+
+            card.style.display="block";
+
         }else{
-            row.style.display = 'none';
+
+            card.style.display="none";
+
         }
 
     });
@@ -438,6 +655,8 @@ searchInput.addEventListener('keyup', function(){
 });
 
 </script>
+
+</div>
 
 </body>
 </html>
