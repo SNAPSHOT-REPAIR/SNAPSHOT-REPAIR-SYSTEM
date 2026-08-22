@@ -446,6 +446,44 @@ app.get("/admin/dashboard", checkAdmin, async (req, res) => {
 
 });
 
+app.get("/admin/live-jobs", checkAdmin, async (req, res) => {
+    try {
+
+        const jobs = await Job.find({
+            status: {
+                $nin: ["Completed", "Return"]
+            }
+        }).sort({ jobDate: -1 });
+
+        // Next Job Number
+        const lastJob = await Job.findOne().sort({ jobNumber: -1 });
+
+        let nextJobNumber = 1;
+
+        if (lastJob && lastJob.jobNumber) {
+            const number = parseInt(
+                String(lastJob.jobNumber).replace(/\D/g, "")
+            );
+
+            if (!isNaN(number)) {
+                nextJobNumber = number + 1;
+            }
+        }
+
+        res.render("live-jobs", {
+            jobs,
+            nextJobNumber
+        });
+
+    } catch (err) {
+
+        console.log("LIVE JOBS ERROR:", err);
+
+        res.status(500).send("Server Error");
+
+    }
+});
+
 app.get("/admin/edit-job/:id", checkAdmin, async (req, res) => {
 
     try{
@@ -670,17 +708,55 @@ app.get("/admin/logout", (req, res) => {
 
 app.get("/engineer/dashboard", checkEngineer, async (req, res) => {
 
-    try{
+    try {
 
-        const jobs = await Job.find().sort({
+        // Aaj se pichhle 7 din ki date
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        sevenDaysAgo.setHours(0, 0, 0, 0);
+
+        const jobs = await Job.find({
+            createdAt: {
+                $gte: sevenDaysAgo
+            },
+            status: {
+                $in: ["Pending", "In Progress"]
+            }
+        }).sort({
             createdAt: -1
         });
 
         res.render("engineer-dashboard", { jobs });
 
-    }catch(err){
+    } catch (err) {
 
-        console.log(err);
+        console.log("ENGINEER DASHBOARD ERROR:", err);
+
+        res.status(500).send("Server Error");
+
+    }
+
+});
+
+app.get("/engineer/live-jobs", checkEngineer, async (req, res) => {
+
+    try {
+
+        const jobs = await Job.find({
+            status: {
+                $in: ["Pending", "In Progress"]
+            }
+        }).sort({
+            createdAt: -1
+        });
+
+        res.render("engineer-live-jobs", { jobs });
+
+    } catch (err) {
+
+        console.log("ENGINEER LIVE JOBS ERROR:", err);
+
+        res.status(500).send("Server Error");
 
     }
 
@@ -780,6 +856,72 @@ app.get("/check-job/:jobNumber", async (req, res) => {
         res.json({
             exists:false
         });
+
+    }
+
+});
+
+app.get("/admin/live-jobs", checkAdmin, async (req, res) => {
+    try {
+
+        const jobs = await Job.find({
+            status: {
+                $nin: ["Completed", "Return"]
+            }
+        }).sort({ jobDate: -1 });
+
+        const lastJob = await Job.findOne().sort({ jobNumber: -1 });
+
+        let nextJobNumber = 1;
+
+        if (lastJob && lastJob.jobNumber) {
+
+            const number = parseInt(
+                String(lastJob.jobNumber).replace(/\D/g, "")
+            );
+
+            if (!isNaN(number)) {
+                nextJobNumber = number + 1;
+            }
+        }
+
+        res.render("live-jobs", {
+            jobs,
+            nextJobNumber
+        });
+
+    } catch (err) {
+
+        console.log("LIVE JOBS ERROR:", err);
+
+        res.status(500).send("Server Error");
+
+    }
+});
+
+app.get("/engineer/live-jobs", checkEngineer, async (req, res) => {
+
+    try {
+
+        const jobs = await Job.find({
+            repairEngineer: req.session.engineerName,
+            status: {
+                $nin: ["Completed", "Return"]
+            }
+        }).sort({ jobDate: -1 });
+
+        console.log("ENGINEER NAME:", req.session.engineerName);
+        console.log("LIVE JOBS FOUND:", jobs.length);
+
+        res.render("engineer-live-jobs", {
+            jobs: jobs
+        });
+
+    } catch (err) {
+
+        console.log("ENGINEER LIVE JOB ERROR:", err);
+
+        res.status(500).send("Server Error");
 
     }
 
