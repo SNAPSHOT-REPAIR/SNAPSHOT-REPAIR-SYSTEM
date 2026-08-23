@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Track Repair</title>
+ <link rel="icon" type="image/png" href="/home.png">
 
 <style>
 *{
@@ -400,6 +401,11 @@ body{
         <div class="row">
             <strong>DATE :-</strong>
             <div class="value"><%= new Date().toLocaleDateString() %></div>
+        </div>
+        
+        <div class="row">
+            <strong>Accessories Received :-</strong>
+            <div class="value"><%= job.accessories %></div>
         </div>
 
         <div class="row">
