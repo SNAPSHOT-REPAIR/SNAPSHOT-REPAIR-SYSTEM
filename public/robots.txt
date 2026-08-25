@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /engineer/
+
+Sitemap: https://snapshotrepair.in/sitemap.xml
